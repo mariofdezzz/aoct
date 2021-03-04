@@ -1,9 +1,10 @@
-import { readFileSync } from 'fs'
+import { existsSync, readFileSync } from 'fs'
 import getConfig from './config'
 const config = getConfig()
 
 const read = (path: string): Array<string> => {
-  return readFileSync(path).toString().split(/\r?\n/)
+  if (existsSync(path)) return readFileSync(path).toString().split(/\r?\n/)
+  else return ['']
 }
 
 const input = (): Array<string> => {
@@ -11,6 +12,10 @@ const input = (): Array<string> => {
     return read(`./data/${config.year}/${process.env.DAY}/input.txt`)
   }
 }
-const test = () => {}
+const test = () => {
+  if (config.local) {
+    return read(`./data/${config.year}/${process.env.DAY}/test.txt`)
+  }
+}
 
 export { input, test }
