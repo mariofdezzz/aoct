@@ -1,12 +1,11 @@
 const { run } = require('aoc-tool')
-// const { test, input };
 
-const part1 = () => {
+const part1 = input => {
   return
 }
 
-const part2 = () => {
+const part2 = input => {
   return
 }
 
-run({ part1, part2 })
+run(part1, part2)

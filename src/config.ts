@@ -3,6 +3,8 @@ import { readFileSync } from 'fs'
 type Config = {
   compiler: string
   year: number
+  local: boolean
+  sessionCookie?: string
 }
 
 type Parsed<T> =
@@ -10,7 +12,7 @@ type Parsed<T> =
   | { parsed?: undefined; throwError: true; error?: unknown }
 
 const isConfig = (o: any): o is Config => {
-  return 'compiler' in o && 'year' in o
+  return ['compiler', 'year', 'local'].every(opt => opt in o)
 }
 
 const parse = <T>(guard: (o: any) => o is T) => (text: string): Parsed<T> => {

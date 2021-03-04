@@ -5,7 +5,7 @@ import getConfig from './config'
 const { year } = getConfig()
 
 export default (day: string) => {
-  process.env.DAY = day.substring(3) + ''
+  process.env.DAY = day
 
   mkdirSync(`./src/${year}`, { recursive: true })
 
