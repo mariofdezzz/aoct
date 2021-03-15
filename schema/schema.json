@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "aoct config definition",
+  "type": "object",
+  "required": ["year"],
+  "properties": {
+    "compiler": {
+      "type": "string",
+      "pattern": "^(js|ts)$"
+    },
+    "year": {
+      "description": "Year you are currently solving",
+      "type": "integer",
+      "minimum": 2015
+    }
+  }
+}
