@@ -1,10 +1,13 @@
-import { readFileSync } from 'fs'
+import { existsSync, readFileSync } from 'fs'
 
-type Config = {
-  compiler: 'js' | 'ts'
-  year: number
-  local: boolean
-  sessionCookie?: string
+class Config {
+  public year: number = new Date().getFullYear()
+  public compiler: 'js' | 'ts' = 'js'
+  public local: boolean = false
+
+  public constructor(init?: Partial<Config>) {
+    Object.assign(this, init)
+  }
 }
 
 type Parsed<T> =
@@ -19,14 +22,17 @@ const isConfig = (o: any): o is Config => {
 }
 
 const parse = <T>(guard: (o: any) => o is T) => (text: string): Parsed<T> => {
-  const parsed = JSON.parse(text)
+  const parsed = new Config(JSON.parse(text))
   return guard(parsed) ? { parsed, throwError: false } : { throwError: true }
 }
 
 export default (): Config => {
-  const json = readFileSync('aocconfig.json').toString()
+  const json = existsSync('aoct.json')
+    ? readFileSync('aoct.json').toString()
+    : '{}'
   const obj = parse(isConfig)(json)
-  if (obj.throwError) throw new Error('Wrong arguments in aocconfig.json')
+
+  if (obj.throwError) throw new Error('Wrong arguments in aoct.json')
 
   return obj.parsed
 }

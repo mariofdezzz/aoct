@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "npx tsc && cd ../aoc-test && npm update && node .",
-    "docs:dev": "vuepress dev docs",
+    "docs:serve": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "author": {

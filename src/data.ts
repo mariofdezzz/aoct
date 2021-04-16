@@ -3,8 +3,11 @@ import getConfig from './config'
 const config = getConfig()
 
 const read = (path: string): Array<string> => {
-  if (existsSync(path)) return readFileSync(path).toString().split(/\r?\n/)
-  else return ['']
+  return existsSync(path)
+    ? readFileSync(path)
+        .toString()
+        .split(/\r?\n/)
+    : ['']
 }
 
 const input = (): Array<string> => {
