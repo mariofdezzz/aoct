@@ -1,10 +1,10 @@
 import { run } from 'aoct'
 
-const part1 = input => {
+const part1 = (input: Array<string>) => {
   return
 }
 
-const part2 = input => {
+const part2 = (input: Array<string>) => {
   return
 }
 

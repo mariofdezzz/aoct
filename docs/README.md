@@ -28,13 +28,7 @@ npm start day1
 
 ## TypeScript
 
-If you are interested in solving problems with TypeScript, you will need _aoct_ and _ts-node_.
-
-```sh
-npm i aoct ts-node
-```
-
-Create `aoct.json` specifying TypeScript compiler. See more [here](config/).
+If you are interested in solving problems with TypeScript, you will need to specify it via config. Create `aoct.json` specifying TypeScript compiler. See more [here](config/).
 
 ```json
 {
