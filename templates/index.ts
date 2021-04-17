@@ -1,4 +1,4 @@
-import { run } from 'aoc-tool'
+import { run } from 'aoct'
 
 const part1 = input => {
   return

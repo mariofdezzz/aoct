@@ -1,4 +1,4 @@
-const { run } = require('aoc-tool')
+const { run } = require('aoct')
 
 const part1 = input => {
   return
