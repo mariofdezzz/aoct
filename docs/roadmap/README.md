@@ -19,8 +19,8 @@
     text="📜 Package documentation"
 />
 <CheckBox
-    v-bind:checked="false"
-    text="🏷 Release v?"
+    v-bind:checked="true"
+    text="🏷 Release v0.1.0"
 />
 
 ## Features
