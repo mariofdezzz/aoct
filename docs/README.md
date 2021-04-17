@@ -16,7 +16,7 @@ To simplify your run command, add following to your `package.json`:
 
 ```json
 "scripts": {
-  "start": "npx aoc-tool start"
+  "start": "npx aoct start"
 },
 ```
 
