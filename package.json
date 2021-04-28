@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "npx tsc && cd ../aoc-test && npm update && node .",
+    "build": "npm ci && npx tsc",
     "docs:serve": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
@@ -22,7 +23,9 @@
     "typescript"
   ],
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
+    "ora": "^5.4.0",
     "ts-node": "^9.1.1",
     "yargs": "^16.2.0"
   },
@@ -43,5 +46,7 @@
     "dist/**/*",
     "templates/**/*"
   ],
-  "bin": "./dist/cli.js"
+  "bin": {
+    "aoct": "dist/cli.js"
+  }
 }
