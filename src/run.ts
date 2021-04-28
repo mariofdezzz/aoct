@@ -1,7 +1,9 @@
-import { test, input } from './data'
+// import { test, input } from './data'
 
 export default (part1: Function, part2: Function, input_: boolean = true) => {
-  let data = input_ ? input() : test()
+  let data = input_
+    ? JSON.parse(process.env.INPUT)
+    : JSON.parse(process.env.TEST)
 
   // === Execution ===
   console.time('Executed in')
