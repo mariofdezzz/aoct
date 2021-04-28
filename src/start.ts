@@ -3,9 +3,9 @@ import { mkdir, access, copyFile } from 'fs/promises'
 import { resolve } from 'path'
 import { spawn } from 'child_process'
 import getConfig from './config'
-import data from './data'
+import getData from './data'
+
 const ora = require('ora')
-const { compiler, year } = getConfig()
 const { F_OK } = constants
 
 export default async (day: string) => {
@@ -16,7 +16,12 @@ export default async (day: string) => {
   const spinner = ora()
   spinner.start('Preparing files')
 
+  const config = getConfig()
+  const { year, compiler } = config
+
   try {
+    process.env.CONFIG = JSON.stringify(config)
+
     await mkdir(`./src/${year}`, { recursive: true })
 
     try {
@@ -29,7 +34,7 @@ export default async (day: string) => {
     }
     spinner.succeed()
     spinner.start('Loading data')
-    const { input, test } = await data()
+    const { input, test } = await getData()
 
     process.env.INPUT = JSON.stringify(input)
     process.env.TEST = JSON.stringify(test)

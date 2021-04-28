@@ -1,9 +1,9 @@
 import { constants } from 'fs'
 import { access, readFile, mkdir, writeFile } from 'fs/promises'
 import fetch from 'node-fetch'
-import getConfig from './config'
-const config = getConfig()
+
 const { F_OK } = constants
+let config
 
 const read = async (path: string, file: string): Promise<Array<string>> => {
   try {
@@ -42,6 +42,8 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
 
 // Pending return type!!
 export default async () => {
+  config = JSON.parse(process.env.CONFIG)
+
   const path = `./data/${config.year}/${process.env.DAY}/`
 
   const input: Array<string> = await read(path, 'input.txt')
