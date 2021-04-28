@@ -2,8 +2,8 @@ import { constants } from 'fs'
 import { mkdir, access, copyFile } from 'fs/promises'
 import { resolve } from 'path'
 import { spawn } from 'child_process'
-import getConfig from './config'
-import getData from './data'
+import getConfig from './utils/config'
+import getData from './utils/data'
 
 const ora = require('ora')
 const { F_OK } = constants
