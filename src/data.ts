@@ -30,6 +30,7 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
 
         return text.split(/\r?\n/)
       } else {
+        // Should this error stop the program? it does not!
         throw new Error('Could not find data locally or in the cloud.')
       }
     } catch (error) {

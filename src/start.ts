@@ -10,7 +10,7 @@ const { F_OK } = constants
 
 export default async (day: string) => {
   process.env.REPO =
-    'https://raw.githubusercontent.com/mariofdezzz/advent-of-code/main/src'
+    'https://raw.githubusercontent.com/mariofdezzz/aoct/main/data'
   process.env.DAY = day
 
   const spinner = ora()
