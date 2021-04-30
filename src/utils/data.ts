@@ -6,6 +6,8 @@ const { F_OK } = constants
 let config
 
 const read = async (path: string, file: string): Promise<Array<string>> => {
+  const day = process.env.DAY.match(/\d+/)
+
   try {
     // --- Local data ---
     await access(path + file, F_OK)
@@ -16,7 +18,7 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
     // --- Fetch data ---
     try {
       const response: Response = await fetch(
-        `${process.env.REPO}/${config.year}/${process.env.DAY}/${file}`
+        `${process.env.REPO}/${config.year}/${day}/${file}`
       )
 
       if (response.ok) {
@@ -30,6 +32,7 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
 
         return text.split(/\r?\n/)
       } else {
+        // Throw this error to top (start)?
         // Should this error stop the program? it does not!
         throw new Error('Could not find data locally or in the cloud.')
       }
