@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx tsc && cd ../aoc-test && npm update && node .",
     "build": "npm ci && npx tsc",
-    "generate": "npx ts-node ./scripts/generate",
+    "data:generate": "npx ts-node ./scripts/generate",
     "docs:serve": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
