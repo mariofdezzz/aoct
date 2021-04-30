@@ -9,6 +9,7 @@ const ora = require('ora')
 const { F_OK } = constants
 
 export default async (day: string) => {
+  // Move to .env file!
   process.env.REPO =
     'https://raw.githubusercontent.com/mariofdezzz/aoct/main/data'
   process.env.DAY = day
