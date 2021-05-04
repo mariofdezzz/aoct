@@ -12,10 +12,6 @@
       "description": "Defines language used on generated templates",
       "type": "string",
       "pattern": "^(js|ts)$"
-    },
-    "local": {
-      "description": "Defines whether the problem's input is found locally",
-      "type": "boolean"
     }
   }
 }
