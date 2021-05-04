@@ -3,7 +3,7 @@ import { mkdir, access, copyFile } from 'fs/promises'
 import { resolve } from 'path'
 import { spawn } from 'child_process'
 import getConfig from './utils/config'
-import getData from './utils/data'
+import getData from './utils/getData'
 
 const ora = require('ora')
 const { F_OK } = constants
