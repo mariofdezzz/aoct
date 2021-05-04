@@ -3,7 +3,6 @@ import { existsSync, readFileSync } from 'fs'
 class Config {
   public year: number = new Date().getFullYear()
   public compiler: 'js' | 'ts' = 'js'
-  public local: boolean = false
 
   public constructor(init?: Partial<Config>) {
     Object.assign(this, init)
@@ -15,10 +14,7 @@ type Parsed<T> =
   | { parsed?: undefined; throwError: true; error?: unknown }
 
 const isConfig = (o: any): o is Config => {
-  return (
-    ['compiler', 'year', 'local'].every(opt => opt in o) &&
-    (o.compiler == 'js' || o.compiler == 'ts')
-  )
+  return o.compiler == 'js' || o.compiler == 'ts'
 }
 
 const parse = <T>(guard: (o: any) => o is T) => (text: string): Parsed<T> => {
