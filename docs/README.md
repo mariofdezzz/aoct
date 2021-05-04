@@ -8,10 +8,6 @@ The fastest way to start solving AoC problems is just by installing this package
 npm i aoct
 ```
 
-::: danger
-For the moment, online data is not availible. So you will need to have puzzles data locally. See how [here](local-data/).
-:::
-
 To simplify your run command, add following to your `package.json`:
 
 ```json

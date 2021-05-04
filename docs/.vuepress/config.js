@@ -53,7 +53,7 @@ module.exports = {
         {
           title: 'Guide',
           collapsable: false,
-          children: ['', 'local-data/'],
+          children: [''],
           initialOpenGroupIndex: 0
         }
       ]
