@@ -5,8 +5,9 @@ import fetch from 'node-fetch'
 const { F_OK } = constants
 let config
 
-const read = async (path: string, file: string): Promise<Array<string>> => {
+const retrieve = async (path: string, file: string): Promise<Array<string>> => {
   const day = process.env.DAY.match(/\d+/)
+  let response: Response
 
   try {
     // --- Local data ---
@@ -17,7 +18,7 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
   } catch (err) {
     // --- Fetch data ---
     try {
-      const response: Response = await fetch(
+      response = await fetch(
         `${process.env.REPO}/${config.year}/${day}/${file}`
       )
 
@@ -31,29 +32,25 @@ const read = async (path: string, file: string): Promise<Array<string>> => {
         // await writeFile(path + file, text)
 
         return text.split(/\r?\n/)
-      } else {
-        // Throw this error to top (start)?
-        // Should this error stop the program? it does not!
-        throw new Error('Could not find data locally or in the cloud.')
       }
     } catch (error) {
       console.error(error)
     }
   }
+  if (response && !response.ok)
+    throw new Error('Could not find data locally or in the cloud.')
+
   return []
 }
 
-// Pending return type!!
-export default async () => {
+// TODO: Pending return type
+export default async (file: string) => {
   config = JSON.parse(process.env.CONFIG)
 
-  const path = `./data/${config.year}/${process.env.DAY}/`
+  const data: Array<string> = await retrieve(
+    `./data/${config.year}/${process.env.DAY}/`,
+    file
+  )
 
-  const input: Array<string> = await read(path, 'input.txt')
-  const test: Array<string> = await read(path, 'test.txt')
-
-  return {
-    input,
-    test
-  }
+  return data
 }

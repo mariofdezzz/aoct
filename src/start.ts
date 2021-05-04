@@ -9,7 +9,7 @@ const ora = require('ora')
 const { F_OK } = constants
 
 export default async (day: string) => {
-  // Move to .env file!
+  // TODO: Move to .env file
   process.env.REPO =
     'https://raw.githubusercontent.com/mariofdezzz/aoct/main/data'
   process.env.DAY = day
@@ -35,10 +35,23 @@ export default async (day: string) => {
     }
     spinner.succeed()
     spinner.start('Loading data')
-    const { input, test } = await getData()
 
-    process.env.INPUT = JSON.stringify(input)
-    process.env.TEST = JSON.stringify(test)
+    try {
+      let data = await getData('input.txt')
+      process.env.INPUT = JSON.stringify(data)
+    } catch (error) {
+      spinner.fail("Couldn't load input")
+      process.env.INPUT = JSON.stringify([])
+      spinner.start('Loading data')
+    }
+    try {
+      let data = await getData('test.txt')
+      process.env.TEST = JSON.stringify(data)
+    } catch (error) {
+      spinner.fail("Couldn't load test")
+      process.env.TEST = JSON.stringify([])
+      spinner.start('Loading data')
+    }
     spinner.succeed()
 
     spawn(
