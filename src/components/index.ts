@@ -1,5 +1,5 @@
 import getConfig from './getConfig'
-import getData from './getData'
 import readData from './readData'
+import fetchData from './fetchData'
 
-export { getConfig, getData, readData }
+export { getConfig, readData, fetchData }
