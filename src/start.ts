@@ -2,7 +2,7 @@ import { constants } from 'fs'
 import { mkdir, access, copyFile } from 'fs/promises'
 import { resolve } from 'path'
 import { spawn } from 'child_process'
-import { getConfig, getData } from './components'
+import { getConfig, readData } from './components'
 
 const ora = require('ora')
 const { F_OK } = constants
@@ -36,7 +36,7 @@ export default async (day: string) => {
     spinner.start('Loading data')
 
     try {
-      let data = await getData('input.txt')
+      let data = await readData('input.txt')
       process.env.INPUT = JSON.stringify(data)
     } catch (error) {
       spinner.fail("Couldn't load input")
@@ -44,7 +44,7 @@ export default async (day: string) => {
       spinner.start('Loading data')
     }
     try {
-      let data = await getData('test.txt')
+      let data = await readData('test.txt')
       process.env.TEST = JSON.stringify(data)
     } catch (error) {
       spinner.fail("Couldn't load test")
