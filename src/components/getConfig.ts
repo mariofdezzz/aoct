@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'fs'
 
-class Config {
+export class Config {
   public year: number = new Date().getFullYear()
   public compiler: 'js' | 'ts' = 'js'
 
