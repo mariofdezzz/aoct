@@ -1,6 +1,6 @@
 # 🎄 AoC Tool
 
-![npm v0.2.0](https://img.shields.io/badge/npm-v0.2.0-orange)
+![npm v0.2.1](https://img.shields.io/badge/npm-v0.2.0-orange)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-yellow)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-blue)
 
