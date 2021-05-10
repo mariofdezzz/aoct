@@ -2,15 +2,12 @@ import { constants } from 'fs'
 import { mkdir, access, copyFile } from 'fs/promises'
 import { resolve } from 'path'
 import { spawn } from 'child_process'
-import { getConfig, readData } from './components'
+import { fetchData, getConfig, readData } from './components'
 
 const ora = require('ora')
 const { F_OK } = constants
 
 export default async (day: string) => {
-  // TODO: Move to .env file
-  process.env.REPO =
-    'https://raw.githubusercontent.com/mariofdezzz/aoct/main/data'
   process.env.DAY = day
 
   const spinner = ora()
@@ -39,9 +36,14 @@ export default async (day: string) => {
       let data = await readData('input.txt')
       process.env.INPUT = JSON.stringify(data)
     } catch (error) {
-      spinner.fail("Couldn't load input")
-      process.env.INPUT = JSON.stringify([])
-      spinner.start('Loading data')
+      try {
+        let data = await fetchData()
+        process.env.INPUT = JSON.stringify(data)
+      } catch (error) {
+        spinner.fail("Couldn't load input")
+        process.env.INPUT = JSON.stringify([])
+        spinner.start('Loading data')
+      }
     }
     try {
       let data = await readData('test.txt')

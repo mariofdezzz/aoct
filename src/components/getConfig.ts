@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'fs'
 export class Config {
   public year: number = new Date().getFullYear()
   public compiler: 'js' | 'ts' = 'js'
+  public session: string
 
   public constructor(init?: Partial<Config>) {
     Object.assign(this, init)
