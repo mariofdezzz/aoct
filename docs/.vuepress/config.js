@@ -40,10 +40,10 @@ module.exports = {
         text: 'Config',
         link: '/config/'
       },
-      {
-        text: 'Roadmap',
-        link: '/roadmap/'
-      }
+      // {
+      //   text: 'Roadmap',
+      //   link: '/roadmap/'
+      // }
     ],
     sidebar: {
       '/roadmap/': false,
@@ -53,7 +53,7 @@ module.exports = {
         {
           title: 'Guide',
           collapsable: false,
-          children: [''],
+          children: ['', 'data/'],
           initialOpenGroupIndex: 0
         }
       ]
