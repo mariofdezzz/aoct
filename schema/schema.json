@@ -12,6 +12,10 @@
       "description": "Defines language used on generated templates",
       "type": "string",
       "pattern": "^(js|ts)$"
+    },
+    "session": {
+      "description": "Your personal session cookie from adventofcode.com. Required to fetch data.",
+      "type": "string"
     }
   }
 }
