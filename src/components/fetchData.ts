@@ -16,14 +16,7 @@ export default async (): Promise<Array<string>> => {
   if (response.ok) {
     let text: string = await response.text()
 
-    // Make it an option? config file
-    // await mkdir(`./data/${config.year}/${process.env.DAY}`, {
-    //   recursive: true
-    // })
-    // await writeFile(path + file, text)
-
     return text.split(/\r?\n/)
-  } else {
-    throw new Error("Couldn't find data locally or in the cloud")
   }
+  throw new Error("Couldn't read or fetch data")
 }

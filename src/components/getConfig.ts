@@ -7,6 +7,7 @@ export class Config {
       : new Date().getFullYear() - 1
   public compiler: 'js' | 'ts' = 'js'
   public session: string
+  public saveFetched: boolean = false
 
   public constructor(init?: Partial<Config>) {
     Object.assign(this, init)
