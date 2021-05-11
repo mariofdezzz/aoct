@@ -5,7 +5,7 @@ You can set up some settings creating `aoct.json` file.
 ## year
 
 - Type: `integer`
-- Default: `Actual year`
+- Default: `Year on last 1st December`
 - Minimum: `2015`
 
 Defines which year are you currently solving.

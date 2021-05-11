@@ -1,7 +1,10 @@
 import { existsSync, readFileSync } from 'fs'
 
 export class Config {
-  public year: number = new Date().getFullYear()
+  public year: number =
+    new Date().getMonth() === 12
+      ? new Date().getFullYear()
+      : new Date().getFullYear() - 1
   public compiler: 'js' | 'ts' = 'js'
   public session: string
 
