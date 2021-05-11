@@ -5,7 +5,7 @@ This tool will allow you to parse problem's input data into an array of strings 
 Unfortunately, input data is different for each account. This makes it more difficult to load this data for you. There are two methods:
 
 - **Read data locally**: If you create a folder named `data` by following the folder structure used by ***aoct***, data will be availible automatically into your code.
-- **Fetch data from server**: The most comfortable idea, but it requires a cookie given to you. This options also allows you to save data locally making loadtime instantaneous.
+- **Fetch data from server**: The most comfortable idea, but it requires a cookie given to you. This options also allows you to save data locally making load time instantaneous.
 
 ## Folder Structure
 
@@ -66,8 +66,4 @@ Otherwise, this behavior affects only _input_ because _test_ cannot be fetched, 
 
 ***Fetch data takes so long***
 
-:::warning
-This is a feature and it is not implemented yet.
-:::
-
-Retrieve data from the server takes a while. This could be enhanced by saving retrieved data if you specify it inside [configuration]().
+Retrieve data from the server takes a while. This could be enhanced by saving retrieved data if you specify it inside [configuration](/config/#saveFetched).

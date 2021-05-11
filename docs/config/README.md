@@ -24,3 +24,9 @@ Let's you choose between JavaScript or TypeScript for solving your problems. Thi
 
 This cookie is given to you by loggin in into **adventofcode.com**. When specified, if it is correct, data will be fetched if you don't have input data saved locally.
 
+## saveFetched
+
+- Type: `boolean`
+- Default: `false`
+
+Save data locally after fetch.
