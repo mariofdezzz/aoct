@@ -1,37 +1,72 @@
 import { fetchData, readData, writeData } from '../components'
 
 export default async (spinner): Promise<void> => {
-  spinner.start('Loading data')
+  const { saveFetched } = JSON.parse(process.env.CONFIG)
 
-  try {
-    let data = await readData('input.txt')
+  spinner.start('Loading input')
 
-    process.env.INPUT = JSON.stringify(data)
-  } catch (error) {
-    try {
-      let data = await fetchData()
-      process.env.INPUT = JSON.stringify(data)
+  if (await readInput()) spinner.succeed()
+  else {
+    if (await fetchInput()) {
+      spinner.succeed()
 
-      writeData(
-        data.reduce(
-          (acc, curr, idx) => (idx === 0 ? curr : `${acc}\n${curr}`),
-          ''
-        )
-      )
-    } catch (error) {
-      spinner.fail("Couldn't load input")
+      if (saveFetched) {
+        spinner.start('Saving input')
+
+        if (await saveInput()) spinner.succeed()
+        else spinner.warn("Couldn't save input")
+      }
+    } else {
+      spinner.fail("Couldn't read or fetch input")
       process.env.INPUT = JSON.stringify([])
-      spinner.start('Loading data')
     }
   }
+
+  spinner.start('Loading test')
+
   try {
     let data = await readData('test.txt')
     process.env.TEST = JSON.stringify(data)
-  } catch (error) {
-    spinner.fail("Couldn't load test")
-    process.env.TEST = JSON.stringify([])
-    spinner.start('Loading data')
-  }
 
-  spinner.succeed()
+    spinner.succeed()
+  } catch (error) {
+    spinner.warn("Couldn't load test")
+    process.env.TEST = JSON.stringify([])
+  }
+}
+
+const readInput = async (): Promise<Boolean> => {
+  try {
+    let data = await readData('input.txt')
+    process.env.INPUT = JSON.stringify(data)
+  } catch (error) {
+    return false
+  }
+  return true
+}
+
+const fetchInput = async (): Promise<Boolean> => {
+  try {
+    let data = await fetchData()
+    process.env.INPUT = JSON.stringify(data)
+  } catch (error) {
+    return false
+  }
+  return true
+}
+
+const saveInput = async (): Promise<Boolean> => {
+  let data = JSON.parse(process.env.INPUT)
+
+  try {
+    await writeData(
+      data.reduce(
+        (acc, curr, idx) => (idx === 0 ? curr : `${acc}\n${curr}`),
+        ''
+      )
+    )
+  } catch (error) {
+    return false
+  }
+  return true
 }
