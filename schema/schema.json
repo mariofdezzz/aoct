@@ -16,6 +16,10 @@
     "session": {
       "description": "Your personal session cookie from adventofcode.com. Required to fetch data.",
       "type": "string"
+    },
+    "saveFetched": {
+      "description": "Data will be saved after fetch.",
+      "type": "boolean"
     }
   }
 }
