@@ -2,6 +2,12 @@
 
 You can set up some settings creating `aoct.json` file.
 
+## $schema
+
+- Value: `https://raw.githubusercontent.com/mariofdezzz/aoct/main/schema/schema.json`
+
+By setting this value into config file, your IDE could autocomplete and show help for each option.
+
 ## year
 
 - Type: `integer`
