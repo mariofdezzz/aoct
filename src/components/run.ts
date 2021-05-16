@@ -1,15 +1,19 @@
+import { log, measure } from './run/'
+
 export default (part1: Function, part2: Function, input_: boolean = true) => {
   let data = input_
     ? JSON.parse(process.env.INPUT)
     : JSON.parse(process.env.TEST)
 
   // === Execution ===
-  console.time('Executed in')
-  const result1 = part1(data)
-  const result2 = part2(data)
-  console.timeEnd('Executed in')
+  const result1 = measure(part1, data)
+  const result2 = measure(part2, data)
 
   // === Results ===
-  console.log('Solution to part 1:', result1)
-  console.log('Solution to part 2:', result2)
+  // Empty space before start
+  console.log('')
+
+  let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
+  log('Part One', result1)
+  log('Part Two', result2)
 }
