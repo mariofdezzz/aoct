@@ -1,11 +1,11 @@
 {
   "name": "aoct",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "🎄 Advent of Code easy and flexible tool",
   "main": "dist/index.js",
   "scripts": {
     "test": "npx tsc && cd ../aoc-test && npm update && node .",
-    "build": "npm ci && npx tsc",
+    "build": "npm i && npx tsc",
     "data:generate": "npx ts-node ./scripts/generate",
     "docs:serve": "vuepress dev docs",
     "docs:build": "vuepress build docs"
