@@ -1,4 +1,4 @@
-import start from './start'
-import run from './run'
+import start from './components/start'
+import run from './components/run'
 
 export { start, run }

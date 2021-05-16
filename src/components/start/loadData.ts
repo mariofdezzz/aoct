@@ -1,4 +1,4 @@
-import { fetchData, readData, writeData } from '../components'
+import { fetch, read, write } from '../../common/data/'
 
 export default async (spinner): Promise<void> => {
   const { saveFetched } = JSON.parse(process.env.CONFIG)
@@ -25,7 +25,7 @@ export default async (spinner): Promise<void> => {
   spinner.start('Loading test')
 
   try {
-    let data = await readData('test.txt')
+    let data = await read('test.txt')
     process.env.TEST = JSON.stringify(data)
 
     spinner.succeed()
@@ -37,7 +37,7 @@ export default async (spinner): Promise<void> => {
 
 const readInput = async (): Promise<Boolean> => {
   try {
-    let data = await readData('input.txt')
+    let data = await read('input.txt')
     process.env.INPUT = JSON.stringify(data)
   } catch (error) {
     return false
@@ -47,7 +47,7 @@ const readInput = async (): Promise<Boolean> => {
 
 const fetchInput = async (): Promise<Boolean> => {
   try {
-    let data = await fetchData()
+    let data = await fetch()
     process.env.INPUT = JSON.stringify(data)
   } catch (error) {
     return false
@@ -59,7 +59,7 @@ const saveInput = async (): Promise<Boolean> => {
   let data = JSON.parse(process.env.INPUT)
 
   try {
-    await writeData(
+    await write(
       data.reduce(
         (acc, curr, idx) => (idx === 0 ? curr : `${acc}\n${curr}`),
         ''

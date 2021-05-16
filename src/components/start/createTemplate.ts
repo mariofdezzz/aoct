@@ -14,7 +14,7 @@ export default async (): Promise<void> => {
     await access(`./src/${year}/${day}.${compiler}`, F_OK)
   } catch (error) {
     await copyFile(
-      resolve(__dirname, `../../templates/index.${compiler}`),
+      resolve(__dirname, `../../../templates/index.${compiler}`),
       `./src/${year}/${day}.${compiler}`
     )
   }
