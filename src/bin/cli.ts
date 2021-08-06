@@ -2,15 +2,15 @@
 import yargs = require('yargs/yargs')
 import start from '../components/start'
 
-const argv = yargs(process.argv.slice(2))
+yargs(process.argv.slice(2))
+  .scriptName('aoct')
   .command('start <day>', 'Executes given day', yargs => {
     yargs.positional('day', {
       type: 'string'
     })
+  },
+  (argv) => {
+    // @ts-ignore
+    start(argv.day)
   })
   .help().argv
-
-if ('day' in argv) {
-  // @ts-ignore
-  start(argv.day)
-}
