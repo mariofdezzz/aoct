@@ -48,6 +48,6 @@
     "templates/**/*"
   ],
   "bin": {
-    "aoct": "dist/cli.js"
+    "aoct": "dist/bin/cli.js"
   }
 }
