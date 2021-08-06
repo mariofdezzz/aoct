@@ -1,3 +1,3 @@
-import run from './components/run'
+import run from './lib/run'
 
 export { run }
