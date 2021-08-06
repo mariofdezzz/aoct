@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import yargs = require('yargs/yargs')
-import start from '../components/start'
+import { start } from './commands'
 
 yargs(process.argv.slice(2))
   .scriptName('aoct')
