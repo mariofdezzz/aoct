@@ -1,5 +1,5 @@
 /**
- * @property {number|string} solition
+ * @property {number|string} solution
  * @property {number} time Execution time in ms.
  */
 export class Stats {

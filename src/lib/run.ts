@@ -1,4 +1,4 @@
-import { log, measure } from './run/'
+import { log, measure } from '../assets/performance'
 
 export default (part1: Function, part2: Function, input_: boolean = true) => {
   let data = input_
