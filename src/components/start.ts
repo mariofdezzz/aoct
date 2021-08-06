@@ -1,5 +1,5 @@
 import { spawn } from 'child_process'
-import { createTemplate, loadConfig, loadData } from './start/'
+import { createTemplate, loadConfig, loadData } from '../assets'
 
 const ora = require('ora')
 

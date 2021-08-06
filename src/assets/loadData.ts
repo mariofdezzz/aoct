@@ -1,4 +1,4 @@
-import { fetch, read, write } from '../../common/data/'
+import { fetch, read, write } from './data'
 
 export default async (spinner): Promise<void> => {
   const { saveFetched } = JSON.parse(process.env.CONFIG)
