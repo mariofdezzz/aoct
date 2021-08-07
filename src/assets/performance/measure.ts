@@ -7,7 +7,7 @@ export class Stats {
   public time: number
   public rss: number
 
-  public constructor(init?: Partial<Stats>) {
+  public constructor (init?: Partial<Stats>) {
     Object.assign(this, init)
   }
 }
@@ -16,7 +16,7 @@ const decimalPrecision = 2
 const decimalReduction = 6
 const decimalsTruncated = decimalReduction - decimalPrecision
 
-export default (part: Function, data: Array<any>): Stats => {
+export default (part: Function, data: string[]): Stats => {
   const tStart = process.hrtime.bigint()
 
   const solution = part(data)
