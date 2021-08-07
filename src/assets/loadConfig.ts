@@ -2,24 +2,25 @@ import { existsSync, readFileSync } from 'fs'
 
 export class Config {
   public year: number =
-    new Date().getMonth() === 12
-      ? new Date().getFullYear()
-      : new Date().getFullYear() - 1
+  new Date().getMonth() === 12
+    ? new Date().getFullYear()
+    : new Date().getFullYear() - 1
+
   public compiler: 'js' | 'ts' = 'js'
   public session: string
   public saveFetched: boolean = false
 
-  public constructor(init?: Partial<Config>) {
+  public constructor (init?: Partial<Config>) {
     Object.assign(this, init)
   }
 }
 
 type Parsed<T> =
-  | { parsed: T; throwError: false; error?: undefined }
-  | { parsed?: undefined; throwError: true; error?: unknown }
+  | { parsed: T, throwError: false, error?: undefined }
+  | { parsed?: undefined, throwError: true, error?: unknown }
 
 const isConfig = (o: any): o is Config => {
-  return o.compiler == 'js' || o.compiler == 'ts'
+  return o.compiler === 'js' || o.compiler === 'ts'
 }
 
 const parse = <T>(guard: (o: any) => o is T) => (text: string): Parsed<T> => {
