@@ -1,20 +1,23 @@
 import fetch from 'node-fetch'
 
-export default async (): Promise<Array<string>> => {
-  let config = JSON.parse(process.env.CONFIG)
-  let day = process.env.DAY.match(/\d+/)
+export default async (): Promise<string[]> => {
+  const { year, session }: {year: string, session: string} = JSON.parse(
+    process.env.CONFIG ?? '{"year":2015}'
+  )
+  const matchExp = (process.env.DAY ?? 'day1').match(/\d+/)
+  const day: string = (matchExp !== null ? matchExp[0] : '1')
 
-  let response = await fetch(
-    `https://adventofcode.com/${config.year}/day/${day}/input`,
+  const response = await fetch(
+    `https://adventofcode.com/${year}/day/${day}/input`,
     {
       headers: {
-        cookie: `session=${config.session}`
+        cookie: `session=${session}`
       }
     }
   )
 
   if (response.ok) {
-    let text: string = await response.text()
+    const text: string = await response.text()
 
     return text.split(/\r?\n/)
   }
