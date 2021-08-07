@@ -5,8 +5,10 @@ import { resolve } from 'path'
 const { F_OK } = constants
 
 export default async (): Promise<void> => {
-  const { year, compiler } = JSON.parse(process.env.CONFIG)
-  let day = process.env.DAY
+  const { year, compiler }: {year: string, compiler: string} = JSON.parse(
+    process.env.CONFIG ?? '{"year":2015,"compiler":"js"}'
+  )
+  const day = process.env.DAY ?? 'day1'
 
   await mkdir(`./src/${year}`, { recursive: true })
 
