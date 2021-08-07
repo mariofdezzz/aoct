@@ -1,10 +1,13 @@
 import { mkdir, writeFile } from 'fs/promises'
 
 export default async (text: string): Promise<void> => {
-  let config = JSON.parse(process.env.CONFIG)
+  const { year }: {year: string} = JSON.parse(
+    process.env.CONFIG ?? '{"year":2015}'
+  )
+  const day = process.env.DAY ?? 'day1'
 
-  await mkdir(`./data/${config.year}/${process.env.DAY}`, {
+  await mkdir(`./data/${year}/${day}`, {
     recursive: true
   })
-  await writeFile(`./data/${config.year}/${process.env.DAY}/input.txt`, text)
+  await writeFile(`./data/${year}/${day}/input.txt`, text)
 }
