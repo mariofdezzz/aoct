@@ -1,9 +1,9 @@
 import { spawn } from 'child_process'
 import { createTemplate, loadConfig, loadData } from '../../assets'
 
-const ora = require('ora')
+import ora = require('ora')
 
-export default async (day: string) => {
+export default async (day: string): Promise<void> => {
   process.env.DAY = day
 
   const spinner = ora()
