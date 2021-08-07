@@ -1,7 +1,9 @@
 import { fetch, read, write } from './data'
 
 export default async (spinner): Promise<void> => {
-  const { saveFetched } = JSON.parse(process.env.CONFIG)
+  const { saveFetched }: {saveFetched: boolean} = JSON.parse(
+    process.env.CONFIG ?? '{"saveFetched": false}'
+  )
 
   spinner.start('Loading input')
 
@@ -25,7 +27,7 @@ export default async (spinner): Promise<void> => {
   spinner.start('Loading test')
 
   try {
-    let data = await read('test.txt')
+    const data = await read('test.txt')
     process.env.TEST = JSON.stringify(data)
 
     spinner.succeed()
@@ -35,9 +37,9 @@ export default async (spinner): Promise<void> => {
   }
 }
 
-const readInput = async (): Promise<Boolean> => {
+const readInput = async (): Promise<boolean> => {
   try {
-    let data = await read('input.txt')
+    const data = await read('input.txt')
     process.env.INPUT = JSON.stringify(data)
   } catch (error) {
     return false
@@ -45,9 +47,9 @@ const readInput = async (): Promise<Boolean> => {
   return true
 }
 
-const fetchInput = async (): Promise<Boolean> => {
+const fetchInput = async (): Promise<boolean> => {
   try {
-    let data = await fetch()
+    const data = await fetch()
     process.env.INPUT = JSON.stringify(data)
   } catch (error) {
     return false
@@ -55,13 +57,14 @@ const fetchInput = async (): Promise<Boolean> => {
   return true
 }
 
-const saveInput = async (): Promise<Boolean> => {
-  let data = JSON.parse(process.env.INPUT)
+const saveInput = async (): Promise<boolean> => {
+  const data = JSON.parse(process.env.INPUT ?? '[]')
 
   try {
     await write(
       data.reduce(
-        (acc, curr, idx) => (idx === 0 ? curr : `${acc}\n${curr}`),
+        (acc: string, curr: string, idx: number) =>
+          (idx === 0 ? curr : `${acc}\n${curr}`),
         ''
       )
     )
