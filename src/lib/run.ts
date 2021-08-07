@@ -1,9 +1,13 @@
 import { log, measure } from '../assets/performance'
 
-export default (part1: Function, part2: Function, input_: boolean = true) => {
-  let data = input_
-    ? JSON.parse(process.env.INPUT)
-    : JSON.parse(process.env.TEST)
+export default (
+  part1: Function,
+  part2: Function,
+  input_: boolean = true
+): void => {
+  const data = input_
+    ? JSON.parse(process.env.INPUT ?? '[]')
+    : JSON.parse(process.env.TEST ?? '[]')
 
   // === Execution ===
   const result1 = measure(part1, data)
@@ -13,7 +17,7 @@ export default (part1: Function, part2: Function, input_: boolean = true) => {
   // Empty space before start
   console.log('')
 
-  let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
+  // let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
   log('Part One', result1)
   log('Part Two', result2)
 }
