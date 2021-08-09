@@ -1,6 +1,5 @@
-import { spawn } from 'child_process'
 import { createTemplate, loadConfig, loadData } from '../../assets'
-
+import nodemon = require('nodemon')
 import ora = require('ora')
 
 export default async (day: string): Promise<void> => {
@@ -21,35 +20,27 @@ export default async (day: string): Promise<void> => {
 
     await loadData(spinner)
 
-    /**
-     * Preformance: ts-node is slower than node on execution
-     */
-    if (compiler === 'js') {
-      spawn('npx',
-        [
-          'nodemon',
-          '--quiet',
-          '--watch src',
-          '--watch data',
-          '-e js,mjs,txt',
-          '--exec "node ./node_modules/aoct/dist/lib/run.js"'
-        ], {
-          shell: true,
-          stdio: 'inherit'
-        })
-    } else {
-      spawn('npx',
-        [
-          'nodemon',
-          '--quiet',
-          '--watch src',
-          '-e ts,txt',
-          '--exec "ts-node ./node_modules/aoct/dist/lib/run.js"'
-        ], {
-          shell: true,
-          stdio: 'inherit'
-        })
-    }
+    // === Execution ===
+    const { exec, ext } =
+      compiler === 'js'
+        ? {
+          exec: 'node',
+          ext: 'js,mjs,txt'
+        }
+        : {
+          exec: 'ts-node',
+          ext: 'ts,txt'
+        }
+
+    nodemon({
+      script: 'node_modules/aoct/dist/lib/run.js',
+      exec,
+      ext,
+      watch: ['data', 'src']
+    })
+    // .on('restart', () => {
+    //   console.clear()
+    // })
   } catch (error) {
     spinner.fail()
     console.error(error)
