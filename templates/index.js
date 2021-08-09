@@ -1,11 +1,10 @@
-const { run } = require('aoct')
-
-const part1 = input => {
-  return
+function part1 (input) {
 }
 
-const part2 = input => {
-  return
+function part2 (input) {
 }
 
-run(part1, part2)
+module.exports = {
+  part1,
+  part2
+}

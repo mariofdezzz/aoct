@@ -1,23 +1,32 @@
 import { log, measure } from '../assets/performance'
 
-export default (
-  part1: Function,
-  part2: Function,
-  input_: boolean = true
-): void => {
-  const data = input_
-    ? JSON.parse(process.env.INPUT ?? '[]')
-    : JSON.parse(process.env.TEST ?? '[]')
+const { year, compiler }: {year: string, compiler: string} = JSON.parse(
+  process.env.CONFIG ?? '{"year":2015}'
+)
+const day = process.env.DAY ?? 'day1'
 
-  // === Execution ===
-  const result1 = measure(part1, data)
-  const result2 = measure(part2, data)
+import(process.cwd() + `/src/${year}/${day}.${compiler}`)
+  .then(
+    (
+      { part1, part2, input = true }:
+      {part1: Function, part2: Function, input: boolean}
+    ) => {
+      const data = input
+        ? JSON.parse(process.env.INPUT ?? '[]') // ??
+        : JSON.parse(process.env.TEST ?? '[]')
 
-  // === Results ===
-  // Empty space before start
-  console.log('')
+      // === Execution ===
+      const result1 = measure(part1, data)
+      const result2 = measure(part2, data)
 
-  // let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
-  log('Part One', result1)
-  log('Part Two', result2)
-}
+      // === Results ===
+      // Empty space before start
+      console.log('')
+
+      // let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
+      log('Part One', result1)
+      log('Part Two', result2)
+    }
+  ).catch(e => {
+    console.error(e)
+  })

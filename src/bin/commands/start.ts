@@ -10,7 +10,7 @@ export default async (day: string): Promise<void> => {
   spinner.start('Preparing files')
 
   const config = loadConfig()
-  const { year, compiler } = config
+  const { compiler } = config
 
   try {
     process.env.CONFIG = JSON.stringify(config)
@@ -21,10 +21,35 @@ export default async (day: string): Promise<void> => {
 
     await loadData(spinner)
 
-    spawn('npx', ['nodemon', '--quiet', `./src/${year}/${day}.${compiler}`], {
-      shell: true,
-      stdio: 'inherit'
-    })
+    /**
+     * Preformance: ts-node is slower than node on execution
+     */
+    if (compiler === 'js') {
+      spawn('npx',
+        [
+          'nodemon',
+          '--quiet',
+          '--watch src',
+          '--watch data',
+          '-e js,mjs,txt',
+          '--exec "node ./node_modules/aoct/dist/lib/run.js"'
+        ], {
+          shell: true,
+          stdio: 'inherit'
+        })
+    } else {
+      spawn('npx',
+        [
+          'nodemon',
+          '--quiet',
+          '--watch src',
+          '-e ts,txt',
+          '--exec "ts-node ./node_modules/aoct/dist/lib/run.js"'
+        ], {
+          shell: true,
+          stdio: 'inherit'
+        })
+    }
   } catch (error) {
     spinner.fail()
     console.error(error)

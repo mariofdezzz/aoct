@@ -1,11 +1,10 @@
-import { run } from 'aoct'
-
-const part1 = (input: Array<string>) => {
-  return
+function part1 (input: Array<string>) {
 }
 
-const part2 = (input: Array<string>) => {
-  return
+function part2 (input: Array<string>) {
 }
 
-run(part1, part2)
+export {
+  part1,
+  part2
+}
