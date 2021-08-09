@@ -20,9 +20,6 @@ import(process.cwd() + `/src/${year}/${day}.${compiler}`)
       const result2 = measure(part2, data)
 
       // === Results ===
-      // Empty space before start
-      console.log('')
-
       // let spaceDiff = ('' + result1.time).length - ('' + result2.time).length
       log('Part One', result1)
       log('Part Two', result2)

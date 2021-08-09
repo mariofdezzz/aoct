@@ -34,13 +34,14 @@ export default async (day: string): Promise<void> => {
 
     nodemon({
       script: 'node_modules/aoct/dist/lib/run.js',
+      watch: ['data', 'src'],
       exec,
-      ext,
-      watch: ['data', 'src']
+      ext
+    }).on('start', () => {
+      console.log(' ')
+    }).on('restart', () => {
+      console.clear()
     })
-    // .on('restart', () => {
-    //   console.clear()
-    // })
   } catch (error) {
     spinner.fail()
     console.error(error)
